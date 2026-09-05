@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nearby Healthcare | AI Health Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="healthcare.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="healthcare-header">
+
+        <button
+            id="backBtn"
+            class="back-btn"
+            type="button"
+        >
+            ←
+        </button>
+
+        <div>
+
+            <h1>Nearby Healthcare</h1>
+
+            <p>
+                Find healthcare services near you
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="healthcare-container">
+
+
+        <!-- ================= LOCATION CARD ================= -->
+
+        <section class="location-card">
+
+            <div class="location-icon">
+                📍
+            </div>
+
+            <div class="location-content">
+
+                <h2>Find Healthcare Near You</h2>
+
+                <p id="locationStatus">
+                    Allow location access to find nearby
+                    healthcare services.
+                </p>
+
+            </div>
+
+            <button
+                id="locationBtn"
+                class="location-btn"
+                type="button"
+            >
+                📍 Use My Location
+            </button>
+
+        </section>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <section class="search-section">
+
+            <div class="section-title">
+
+                <h2>Healthcare Services</h2>
+
+                <p>
+                    Choose a service to find nearby options
+                </p>
+
+            </div>
+
+
+            <div class="service-grid">
+
+
+                <!-- HOSPITALS -->
+
+                <button
+                    class="service-card"
+                    id="hospitalServiceBtn"
+                    type="button"
+                >
+
+                    <span class="service-icon">
+                        🏥
+                    </span>
+
+                    <div>
+
+                        <strong>Hospitals</strong>
+
+                        <small>
+                            Emergency & general hospitals
+                        </small>
+
+                    </div>
+
+                    <span class="service-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- PHARMACIES -->
+
+                <button
+                    class="service-card"
+                    id="pharmacyServiceBtn"
+                    type="button"
+                >
+
+                    <span class="service-icon">
+                        💊
+                    </span>
+
+                    <div>
+
+                        <strong>Pharmacies</strong>
+
+                        <small>
+                            Find nearby medicine stores
+                        </small>
+
+                    </div>
+
+                    <span class="service-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- CLINICS -->
+
+                <button
+                    class="service-card"
+                    id="clinicServiceBtn"
+                    type="button"
+                >
+
+                    <span class="service-icon">
+                        🩺
+                    </span>
+
+                    <div>
+
+                        <strong>Clinics</strong>
+
+                        <small>
+                            Doctors & primary care
+                        </small>
+
+                    </div>
+
+                    <span class="service-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- DIAGNOSTIC LABS -->
+
+                <button
+                    class="service-card"
+                    id="labServiceBtn"
+                    type="button"
+                >
+
+                    <span class="service-icon">
+                        🧪
+                    </span>
+
+                    <div>
+
+                        <strong>Diagnostic Labs</strong>
+
+                        <small>
+                            Tests & health checkups
+                        </small>
+
+                    </div>
+
+                    <span class="service-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESULTS ================= -->
+
+        <section
+            id="resultsSection"
+            class="results-section hidden"
+        >
+
+            <div class="results-header">
+
+                <div>
+
+                    <h2 id="resultsTitle">
+                        Nearby Healthcare
+                    </h2>
+
+                    <p id="resultsSubtitle">
+                        Results near your location
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="resultsContainer"
+                class="results-container"
+            >
+
+                <!-- Results will appear here -->
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAP ACTION ================= -->
+
+        <section class="map-card">
+
+            <div>
+
+                <span class="map-icon">
+                    🗺️
+                </span>
+
+                <div>
+
+                    <h3>Explore on Maps</h3>
+
+                    <p>
+                        View healthcare services around
+                        your current location.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="mapsBtn"
+                type="button"
+            >
+                Open Maps →
+            </button>
+
+        </section>
+
+
+        <!-- ================= SAFETY NOTE ================= -->
+
+        <div class="healthcare-note">
+
+            ⚠️ <strong>Important:</strong>
+
+            Always verify the availability and services
+            of a healthcare facility before visiting.
+            In an emergency, contact emergency services
+            immediately.
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="healthcare.js"></script>
+
+</body>
+
+</html>

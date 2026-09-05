@@ -1,0 +1,638 @@
+// =====================================================
+// HEALTH INSIGHTS
+// =====================================================
+
+
+// ================= ELEMENTS =================
+
+const backBtn =
+    document.getElementById("backBtn");
+
+const stepsInsight =
+    document.getElementById("stepsInsight");
+
+const stepsInsightText =
+    document.getElementById("stepsInsightText");
+
+const waterInsight =
+    document.getElementById("waterInsight");
+
+const waterInsightText =
+    document.getElementById("waterInsightText");
+
+const medicineInsight =
+    document.getElementById("medicineInsight");
+
+const medicineInsightText =
+    document.getElementById("medicineInsightText");
+
+const recordsInsight =
+    document.getElementById("recordsInsight");
+
+const recordsInsightText =
+    document.getElementById("recordsInsightText");
+
+const dailyInsights =
+    document.getElementById("dailyInsights");
+
+
+// =====================================================
+// BACK BUTTON
+// =====================================================
+
+if (backBtn) {
+
+    backBtn.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "home.html";
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// GET SAVED STEP DATA
+// =====================================================
+
+function getStepData() {
+
+    try {
+
+        const data =
+            localStorage.getItem("stepData");
+
+        if (!data) {
+
+            return {
+                count: 0,
+                goal: 8000
+            };
+
+        }
+
+        const parsed =
+            JSON.parse(data);
+
+        return {
+
+            count:
+                Number(parsed.count) || 0,
+
+            goal:
+                Number(parsed.goal) || 8000
+
+        };
+
+    } catch (error) {
+
+        console.error(
+            "Step data error:",
+            error
+        );
+
+        return {
+            count: 0,
+            goal: 8000
+        };
+
+    }
+
+}
+
+
+// =====================================================
+// GET SAVED WATER DATA
+// =====================================================
+
+function getWaterData() {
+
+    try {
+
+        const data =
+            localStorage.getItem("waterData");
+
+        if (!data) {
+
+            return {
+                count: 0,
+                goal: 8
+            };
+
+        }
+
+        const parsed =
+            JSON.parse(data);
+
+        return {
+
+            count:
+                Number(parsed.count) || 0,
+
+            goal:
+                Number(parsed.goal) || 8
+
+        };
+
+    } catch (error) {
+
+        console.error(
+            "Water data error:",
+            error
+        );
+
+        return {
+            count: 0,
+            goal: 8
+        };
+
+    }
+
+}
+
+
+// =====================================================
+// FIND MEDICINE DATA
+// =====================================================
+
+function getMedicineCount() {
+
+    const possibleKeys = [
+
+        "medicineRecords",
+        "medicines",
+        "medicineData",
+        "savedMedicines",
+        "medicineHistory"
+
+    ];
+
+
+    for (const key of possibleKeys) {
+
+        try {
+
+            const data =
+                localStorage.getItem(key);
+
+            if (!data) {
+                continue;
+            }
+
+
+            const parsed =
+                JSON.parse(data);
+
+
+            if (Array.isArray(parsed)) {
+
+                return parsed.length;
+
+            }
+
+
+            if (
+                parsed &&
+                Array.isArray(parsed.records)
+            ) {
+
+                return parsed.records.length;
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Could not read:",
+                key
+            );
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+// =====================================================
+// FIND HEALTH RECORD COUNT
+// =====================================================
+
+function getRecordCount() {
+
+    const possibleKeys = [
+
+        "healthRecords",
+        "records",
+        "healthRecordData",
+        "savedRecords"
+
+    ];
+
+
+    for (const key of possibleKeys) {
+
+        try {
+
+            const data =
+                localStorage.getItem(key);
+
+            if (!data) {
+                continue;
+            }
+
+
+            const parsed =
+                JSON.parse(data);
+
+
+            if (Array.isArray(parsed)) {
+
+                return parsed.length;
+
+            }
+
+
+            if (
+                parsed &&
+                Array.isArray(parsed.records)
+            ) {
+
+                return parsed.records.length;
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Could not read:",
+                key
+            );
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+// =====================================================
+// STEPS INSIGHT
+// =====================================================
+
+function updateStepsInsight() {
+
+    const data =
+        getStepData();
+
+
+    const count =
+        data.count;
+
+    const goal =
+        data.goal;
+
+
+    const percentage =
+        goal > 0
+            ? Math.min(
+                100,
+                Math.round(
+                    (count / goal) * 100
+                )
+            )
+            : 0;
+
+
+    if (stepsInsight) {
+
+        stepsInsight.textContent =
+            `${count.toLocaleString()} / ${goal.toLocaleString()} steps`;
+
+    }
+
+
+    if (stepsInsightText) {
+
+        if (count >= goal) {
+
+            stepsInsightText.textContent =
+                "🎉 Great! You have reached your daily step goal.";
+
+        } else {
+
+            const remaining =
+                goal - count;
+
+            stepsInsightText.textContent =
+                `${remaining.toLocaleString()} steps remaining to reach your daily goal (${percentage}% complete).`;
+
+        }
+
+    }
+
+}
+
+
+// =====================================================
+// WATER INSIGHT
+// =====================================================
+
+function updateWaterInsight() {
+
+    const data =
+        getWaterData();
+
+
+    const count =
+        data.count;
+
+    const goal =
+        data.goal;
+
+
+    const percentage =
+        goal > 0
+            ? Math.min(
+                100,
+                Math.round(
+                    (count / goal) * 100
+                )
+            )
+            : 0;
+
+
+    if (waterInsight) {
+
+        waterInsight.textContent =
+            `${count} / ${goal} glasses`;
+
+    }
+
+
+    if (waterInsightText) {
+
+        if (count >= goal) {
+
+            waterInsightText.textContent =
+                "💧 Excellent! You have reached your hydration goal.";
+
+        } else {
+
+            const remaining =
+                goal - count;
+
+            waterInsightText.textContent =
+                `${remaining} glass${remaining === 1 ? "" : "es"} remaining to reach your goal (${percentage}% complete).`;
+
+        }
+
+    }
+
+}
+
+
+// =====================================================
+// MEDICINE INSIGHT
+// =====================================================
+
+function updateMedicineInsight() {
+
+    const count =
+        getMedicineCount();
+
+
+    if (medicineInsight) {
+
+        medicineInsight.textContent =
+            `${count} saved`;
+
+    }
+
+
+    if (medicineInsightText) {
+
+        if (count === 0) {
+
+            medicineInsightText.textContent =
+                "No saved medicine records found yet.";
+
+        } else if (count === 1) {
+
+            medicineInsightText.textContent =
+                "You have 1 medicine saved in your health data.";
+
+        } else {
+
+            medicineInsightText.textContent =
+                `You have ${count} medicines saved in your health data.`;
+
+        }
+
+    }
+
+}
+
+
+// =====================================================
+// HEALTH RECORD INSIGHT
+// =====================================================
+
+function updateRecordsInsight() {
+
+    const count =
+        getRecordCount();
+
+
+    if (recordsInsight) {
+
+        recordsInsight.textContent =
+            `${count} saved`;
+
+    }
+
+
+    if (recordsInsightText) {
+
+        if (count === 0) {
+
+            recordsInsightText.textContent =
+                "No health records have been saved yet.";
+
+        } else if (count === 1) {
+
+            recordsInsightText.textContent =
+                "You have 1 health record saved.";
+
+        } else {
+
+            recordsInsightText.textContent =
+                `You have ${count} health records saved.`;
+
+        }
+
+    }
+
+}
+
+
+// =====================================================
+// DAILY INSIGHTS
+// =====================================================
+
+function createDailyInsight(
+    icon,
+    title,
+    message
+) {
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "daily-insight-item";
+
+
+    item.innerHTML = `
+
+        <span class="daily-insight-icon">
+            ${icon}
+        </span>
+
+        <div>
+
+            <strong>
+                ${title}
+            </strong>
+
+            <p>
+                ${message}
+            </p>
+
+        </div>
+
+    `;
+
+
+    dailyInsights.appendChild(item);
+
+}
+
+
+// =====================================================
+// GENERATE DAILY INSIGHTS
+// =====================================================
+
+function generateDailyInsights() {
+
+    if (!dailyInsights) {
+        return;
+    }
+
+
+    dailyInsights.innerHTML = "";
+
+
+    const stepData =
+        getStepData();
+
+    const waterData =
+        getWaterData();
+
+
+    // ---------------- STEPS ----------------
+
+    if (
+        stepData.count >=
+        stepData.goal
+    ) {
+
+        createDailyInsight(
+            "🎉",
+            "Step Goal Completed",
+            "You have reached your daily step target. Keep up the consistency."
+        );
+
+    } else {
+
+        const remaining =
+            Math.max(
+                0,
+                stepData.goal -
+                stepData.count
+            );
+
+        createDailyInsight(
+            "🚶",
+            "Keep Moving",
+            `${remaining.toLocaleString()} more steps would complete your daily goal.`
+        );
+
+    }
+
+
+    // ---------------- WATER ----------------
+
+    if (
+        waterData.count >=
+        waterData.goal
+    ) {
+
+        createDailyInsight(
+            "💧",
+            "Hydration Goal Completed",
+            "You have reached your water intake goal for today."
+        );
+
+    } else {
+
+        const remaining =
+            Math.max(
+                0,
+                waterData.goal -
+                waterData.count
+            );
+
+        createDailyInsight(
+            "💧",
+            "Stay Hydrated",
+            `${remaining} more glass${remaining === 1 ? "" : "es"} to reach your water goal.`
+        );
+
+    }
+
+
+    // ---------------- GENERAL ----------------
+
+    createDailyInsight(
+        "💚",
+        "Consistency Matters",
+        "Small, consistent habits can help you maintain a healthier daily routine."
+    );
+
+}
+
+
+// =====================================================
+// INITIALIZE
+// =====================================================
+
+updateStepsInsight();
+
+updateWaterInsight();
+
+updateMedicineInsight();
+
+updateRecordsInsight();
+
+generateDailyInsights();

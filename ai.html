@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Health Assistant</title>
+
+    <link rel="stylesheet" href="ai.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="ai-header">
+
+        <button id="backBtn" class="back-btn">
+            ←
+        </button>
+
+        <div class="ai-title">
+
+            <div class="ai-logo">
+                🤖
+            </div>
+
+            <div>
+                <h1>AI Health Assistant</h1>
+                <p>Your personal health companion</p>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main -->
+    <main class="ai-container">
+
+        <!-- Welcome Card -->
+        <section class="welcome-card">
+
+            <div class="bot-icon">
+                🤖
+            </div>
+
+            <div>
+                <h2>Hi! I'm your AI Health Assistant 👋</h2>
+
+                <p>
+                    Tell me about your health concern and I'll
+                    provide general health information and guidance.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Quick Questions -->
+        <section class="quick-section">
+
+            <h3>Quick Questions</h3>
+
+            <div class="quick-buttons">
+
+                <button class="quick-btn" data-question="What are some healthy habits I can follow daily?">
+                    🥗 Healthy Habits
+                </button>
+
+                <button class="quick-btn" data-question="What should I know about taking medicines safely?">
+                    💊 Medicine Safety
+                </button>
+
+                <button class="quick-btn" data-question="How can I improve my sleep?">
+                    😴 Better Sleep
+                </button>
+
+                <button class="quick-btn" data-question="What are some simple ways to manage stress?">
+                    🧘 Stress Management
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Chat Area -->
+        <section class="chat-card">
+
+            <div id="chatMessages" class="chat-messages">
+
+                <div class="message bot-message">
+
+                    <div class="message-icon">
+                        🤖
+                    </div>
+
+                    <div class="message-content">
+
+                        <p>
+                            Hello! 👋 How can I help you with
+                            your health today?
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Typing Area -->
+            <div class="chat-input-area">
+
+                <input
+                    type="text"
+                    id="userInput"
+                    placeholder="Ask me a health question..."
+                    autocomplete="off"
+                >
+
+                <button id="sendBtn">
+                    ➤
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Disclaimer -->
+        <div class="ai-disclaimer">
+
+            ⚠️ <strong>Important:</strong>
+            This AI assistant provides general health information
+            only and is not a replacement for a doctor or
+            healthcare professional.
+
+        </div>
+
+    </main>
+
+
+    <script src="ai.js"></script>
+
+</body>
+
+</html>

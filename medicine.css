@@ -1,0 +1,432 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f3f8f7;
+    color: #17202a;
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.medicine-header {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid #e5eeee;
+
+    display: flex;
+    align-items: center;
+
+    padding: 12px 20px;
+
+    gap: 15px;
+}
+
+.back-btn {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #e8f7f3;
+    color: #168b75;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.medicine-header h1 {
+    font-size: 20px;
+    color: #168b75;
+}
+
+.medicine-header p {
+    color: #777;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+
+/* ================= MAIN ================= */
+
+.medicine-container {
+    width: 92%;
+    max-width: 750px;
+
+    margin: 22px auto;
+}
+
+
+/* ================= ADD MEDICINE CARD ================= */
+
+.add-medicine-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.title-icon {
+    width: 48px;
+    height: 48px;
+
+    background: #e9f8f4;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+.section-title h2 {
+    font-size: 18px;
+}
+
+.section-title p {
+    color: #777;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+}
+
+
+/* ================= FORM ================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    color: #344444;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    height: 44px;
+
+    border: 1px solid #d9e5e2;
+
+    border-radius: 11px;
+
+    padding: 0 13px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    background: #fbfdfc;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #168b75;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 139, 117, 0.08);
+}
+
+
+/* ================= ADD BUTTON ================= */
+
+.add-btn {
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #168b75;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+
+    transition: 0.2s;
+}
+
+.add-btn:hover {
+    background: #10705f;
+
+    transform: translateY(-1px);
+}
+
+
+/* ================= MEDICINE LIST ================= */
+
+.medicine-list-section {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 22px;
+
+    margin-top: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.list-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.list-header h2 {
+    font-size: 18px;
+}
+
+.list-header p {
+    font-size: 11px;
+
+    color: #777;
+
+    margin-top: 4px;
+}
+
+.medicine-count {
+    min-width: 30px;
+    height: 30px;
+
+    background: #e9f8f4;
+
+    color: #168b75;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 35px 15px;
+
+    color: #777;
+}
+
+.empty-icon {
+    width: 60px;
+    height: 60px;
+
+    background: #f0f7f5;
+
+    border-radius: 50%;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+}
+
+.empty-state h3 {
+    color: #344444;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.empty-state p {
+    font-size: 11px;
+}
+
+
+/* ================= MEDICINE CARD ================= */
+
+.medicine-card {
+    border: 1px solid #e1ece9;
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    background: #fcfefe;
+}
+
+.medicine-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.medicine-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 12px;
+
+    background: #e9f8f4;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.medicine-details h3 {
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+.medicine-details p {
+    color: #777;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+.medicine-time {
+    color: #168b75;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.delete-btn {
+    border: none;
+
+    background: #fff0f0;
+
+    color: #d64545;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+/* ================= REMINDER INFO ================= */
+
+.reminder-info {
+    margin-top: 15px;
+
+    background: #fff8e6;
+
+    color: #735d28;
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .medicine-container {
+        width: 94%;
+    }
+
+    .add-medicine-card,
+    .medicine-list-section {
+        padding: 17px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .medicine-card {
+        align-items: flex-start;
+    }
+
+}

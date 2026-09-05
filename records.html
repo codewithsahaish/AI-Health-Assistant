@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Health Records</title>
+
+    <link rel="stylesheet" href="records.css">
+</head>
+
+<body>
+
+    <header class="records-header">
+
+        <button id="backBtn" class="back-btn">
+            ←
+        </button>
+
+        <div>
+            <h1>📋 Health Records</h1>
+            <p>Keep your health information organized</p>
+        </div>
+
+    </header>
+
+
+    <main class="records-container">
+
+        <!-- ADD RECORD -->
+
+        <section class="add-record-card">
+
+            <div class="section-title">
+
+                <div class="title-icon">
+                    📋
+                </div>
+
+                <div>
+                    <h2>Add Health Record</h2>
+                    <p>Save your important health information</p>
+                </div>
+
+            </div>
+
+
+            <form id="recordForm">
+
+                <div class="form-group">
+
+                    <label>Record Type</label>
+
+                    <select id="recordType" required>
+
+                        <option value="">
+                            Select record type
+                        </option>
+
+                        <option value="Prescription">
+                            💊 Prescription
+                        </option>
+
+                        <option value="Lab Report">
+                            🧪 Lab Report
+                        </option>
+
+                        <option value="Doctor Visit">
+                            🩺 Doctor Visit
+                        </option>
+
+                        <option value="Vaccination">
+                            💉 Vaccination
+                        </option>
+
+                        <option value="Medical Report">
+                            📄 Medical Report
+                        </option>
+
+                        <option value="Other">
+                            📁 Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Record Title</label>
+
+                    <input
+                        type="text"
+                        id="recordTitle"
+                        placeholder="e.g. Blood Test Report"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Record Date</label>
+
+                    <input
+                        type="date"
+                        id="recordDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Doctor / Hospital</label>
+
+                    <input
+                        type="text"
+                        id="doctorHospital"
+                        placeholder="e.g. City Hospital"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Notes</label>
+
+                    <textarea
+                        id="recordNotes"
+                        rows="4"
+                        placeholder="Add important details..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="add-record-btn"
+                >
+                    + Save Health Record
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RECORD LIST -->
+
+        <section class="records-list-section">
+
+            <div class="list-header">
+
+                <div>
+                    <h2>My Health Records</h2>
+
+                    <p>
+                        Your saved health information
+                    </p>
+                </div>
+
+                <span
+                    id="recordCount"
+                    class="record-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="recordsList"
+                class="records-list"
+            >
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        No health records yet
+                    </h3>
+
+                    <p>
+                        Add your first health record above.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="records-info">
+
+            🔐 <strong>Privacy:</strong>
+            Your records are currently stored locally
+            in this browser.
+
+        </div>
+
+    </main>
+
+
+    <script src="records.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,651 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #101615;
+    color: white;
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.scanner-header {
+    height: 72px;
+    background: #101615;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 10;
+}
+
+.scanner-header button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.scanner-header h1 {
+    font-size: 20px;
+}
+
+.scanner-header p {
+    font-size: 12px;
+    color: #b7c3c1;
+    margin-top: 3px;
+}
+
+
+/* ================= MAIN ================= */
+
+.scanner-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+/* ================= CAMERA ================= */
+
+.camera-card {
+    position: relative;
+    background: #101615;
+}
+
+.camera-box {
+    width: 100%;
+    height: min(70vh, 560px);
+    min-height: 430px;
+    background: #18201f;
+    position: relative;
+    overflow: hidden;
+}
+
+#camera {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ================= DARK OVERLAY ================= */
+
+.camera-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.25)
+        );
+    pointer-events: none;
+}
+
+
+/* ================= SCANNER FRAME ================= */
+
+.scan-frame {
+    position: absolute;
+
+    width: 78%;
+    height: 42%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: none;
+
+    box-shadow:
+        0 0 0 9999px rgba(0, 0, 0, 0.48);
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* ================= CORNERS ================= */
+
+.scan-frame::before,
+.scan-frame::after,
+.scan-frame span::before,
+.scan-frame span::after {
+    content: "";
+    position: absolute;
+
+    width: 38px;
+    height: 38px;
+
+    border-color: #38d5b4;
+    border-style: solid;
+}
+
+
+/* Top Left */
+
+.scan-frame::before {
+    top: 0;
+    left: 0;
+
+    border-width: 4px 0 0 4px;
+}
+
+
+/* Top Right */
+
+.scan-frame::after {
+    top: 0;
+    right: 0;
+
+    border-width: 4px 4px 0 0;
+}
+
+
+/* Bottom Left */
+
+.scan-frame span::before {
+    bottom: 0;
+    left: 0;
+
+    border-width: 0 0 4px 4px;
+}
+
+
+/* Bottom Right */
+
+.scan-frame span::after {
+    bottom: 0;
+    right: 0;
+
+    border-width: 0 4px 4px 0;
+}
+
+
+/* ================= SCAN LINE ================= */
+
+.scan-frame span {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+}
+
+.scan-frame span::marker {
+    display: none;
+}
+
+.scan-frame span {
+    border: none;
+}
+
+.scan-frame span {
+    animation: scannerPulse 2s infinite ease-in-out;
+}
+
+.scan-frame span::before,
+.scan-frame span::after {
+    pointer-events: none;
+}
+
+.scan-frame::marker {
+    display: none;
+}
+
+
+/* Moving scanning line */
+
+.scan-frame {
+    --scan-line-position: 0%;
+}
+
+.scan-frame {
+    animation: frameGlow 2s infinite ease-in-out;
+}
+
+@keyframes frameGlow {
+
+    0%,
+    100% {
+        opacity: 0.85;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ================= CAMERA MESSAGE ================= */
+
+.camera-message {
+    position: absolute;
+
+    bottom: 45px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(0, 0, 0, 0.65);
+
+    color: white;
+
+    padding: 10px 17px;
+
+    border-radius: 25px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    z-index: 8;
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* ================= CONTROLS ================= */
+
+.scanner-controls {
+    background: #101615;
+
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+/* Main capture button */
+
+.capture-btn {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    border: 5px solid white;
+
+    background: #168b75;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 0 4px rgba(22, 139, 117, 0.35);
+}
+
+.capture-btn:hover {
+    transform: scale(1.05);
+}
+
+.capture-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+}
+
+
+/* Start camera */
+
+.primary-btn {
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #168b75;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #10705f;
+}
+
+
+/* ================= UPLOAD ================= */
+
+.upload-section {
+    background: #101615;
+
+    padding: 5px 20px 25px;
+
+    text-align: center;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #879492;
+
+    margin: 10px 0 18px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    height: 1px;
+
+    background: #394240;
+
+    flex: 1;
+}
+
+.upload-btn {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    border: 1px solid #168b75;
+
+    border-radius: 12px;
+
+    color: #5dd7be;
+
+    background: rgba(22, 139, 117, 0.08);
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.upload-section p {
+    color: #879492;
+
+    font-size: 11px;
+
+    margin-top: 9px;
+}
+
+
+/* ================= PROCESSING ================= */
+
+.processing {
+    background: white;
+
+    color: #222;
+
+    margin: 20px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+.loader {
+    width: 45px;
+    height: 45px;
+
+    border: 4px solid #dceeea;
+
+    border-top-color: #168b75;
+
+    border-radius: 50%;
+
+    margin: auto;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.processing h2 {
+    margin-top: 15px;
+
+    font-size: 18px;
+}
+
+.processing p {
+    color: #777;
+
+    margin-top: 7px;
+
+    font-size: 13px;
+}
+
+
+/* ================= RESULT ================= */
+
+.result-section {
+    margin: 20px;
+
+    background: white;
+
+    color: #1f2937;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.result-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.success-icon {
+    width: 45px;
+    height: 45px;
+
+    background: #e4f8f1;
+
+    color: #168b75;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+.result-header h2 {
+    font-size: 19px;
+}
+
+.result-header p {
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+/* ================= DETAILS ================= */
+
+.medicine-details {
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.detail-card {
+    background: #f7faf9;
+
+    border: 1px solid #e5efed;
+
+    border-radius: 14px;
+
+    padding: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.detail-card > span {
+    font-size: 23px;
+}
+
+.detail-card small {
+    display: block;
+
+    color: #777;
+
+    font-size: 11px;
+
+    margin-bottom: 4px;
+}
+
+.detail-card strong {
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* ================= EXPIRY ================= */
+
+.expiry-status {
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    background: #edf7f5;
+
+    color: #168b75;
+}
+
+
+/* ================= RAW TEXT ================= */
+
+.raw-text-box {
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background: #f7f7f7;
+
+    border-radius: 13px;
+}
+
+.raw-text-box h3 {
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+.raw-text-box p {
+    font-size: 12px;
+
+    color: #666;
+
+    line-height: 1.5;
+
+    white-space: pre-wrap;
+}
+
+
+/* ================= SAFETY ================= */
+
+.safety-note {
+    margin: 20px;
+
+    padding: 14px;
+
+    background: #fff8e6;
+
+    border-radius: 12px;
+
+    color: #735d28;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* ================= HIDDEN ================= */
+
+.hidden {
+    display: none;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .scanner-header {
+        padding: 13px 16px;
+    }
+
+    .camera-box {
+        height: 62vh;
+
+        min-height: 420px;
+    }
+
+    .scan-frame {
+        width: 84%;
+        height: 35%;
+    }
+
+    .medicine-details {
+        grid-template-columns: 1fr;
+    }
+
+}

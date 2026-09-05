@@ -1,0 +1,490 @@
+const medicineForm = document.getElementById("medicineForm");
+
+const medicineName = document.getElementById("medicineName");
+const dosage = document.getElementById("dosage");
+const frequency = document.getElementById("frequency");
+const medicineTime = document.getElementById("medicineTime");
+const startDate = document.getElementById("startDate");
+const endDate = document.getElementById("endDate");
+
+const medicineList = document.getElementById("medicineList");
+const medicineCount = document.getElementById("medicineCount");
+
+const backBtn = document.getElementById("backBtn");
+
+
+// =====================================================
+// MEDICINE DATA
+// =====================================================
+
+let medicines =
+    JSON.parse(
+        localStorage.getItem("healthMedicines")
+    ) || [];
+
+
+// =====================================================
+// ADD MEDICINE
+// =====================================================
+
+medicineForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const medicine = {
+
+            id: Date.now(),
+
+            name: medicineName.value.trim(),
+
+            dosage: dosage.value.trim(),
+
+            frequency: frequency.value,
+
+            time: medicineTime.value,
+
+            startDate: startDate.value,
+
+            endDate: endDate.value
+
+        };
+
+
+        medicines.push(medicine);
+
+
+        saveMedicines();
+
+        renderMedicines();
+
+
+        medicineForm.reset();
+
+
+        alert(
+            "Medicine reminder added successfully! 💊"
+        );
+
+    }
+);
+
+
+// =====================================================
+// SAVE MEDICINES
+// =====================================================
+
+function saveMedicines() {
+
+    localStorage.setItem(
+        "healthMedicines",
+        JSON.stringify(medicines)
+    );
+
+}
+
+
+// =====================================================
+// DISPLAY MEDICINES
+// =====================================================
+
+function renderMedicines() {
+
+    medicineList.innerHTML = "";
+
+
+    medicineCount.textContent =
+        medicines.length;
+
+
+    if (medicines.length === 0) {
+
+        medicineList.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    💊
+                </div>
+
+                <h3>
+                    No medicines added
+                </h3>
+
+                <p>
+                    Add your first medicine reminder above.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    medicines.forEach(
+        function (medicine) {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "medicine-card";
+
+
+            card.innerHTML = `
+
+                <div class="medicine-info">
+
+                    <div class="medicine-icon">
+                        💊
+                    </div>
+
+                    <div class="medicine-details">
+
+                        <h3>
+                            ${escapeHTML(medicine.name)}
+                        </h3>
+
+                        <p>
+                            Dosage:
+                            ${escapeHTML(medicine.dosage)}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(medicine.frequency)}
+                        </p>
+
+                        <p>
+                            ${formatDate(medicine.startDate)}
+                            ${
+                                medicine.endDate
+                                    ? " → " +
+                                      formatDate(medicine.endDate)
+                                    : ""
+                            }
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="medicine-time">
+                        ⏰ ${formatTime(medicine.time)}
+                    </div>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteMedicine(${medicine.id})"
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+            `;
+
+
+            medicineList.appendChild(card);
+
+        }
+    );
+
+}
+
+
+// =====================================================
+// DELETE MEDICINE
+// =====================================================
+
+function deleteMedicine(id) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this medicine reminder?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    medicines =
+        medicines.filter(
+            function (medicine) {
+                return medicine.id !== id;
+            }
+        );
+
+
+    saveMedicines();
+
+    renderMedicines();
+
+}
+
+
+// =====================================================
+// FORMAT TIME
+// =====================================================
+
+function formatTime(time) {
+
+    if (!time) {
+        return "";
+    }
+
+
+    const parts =
+        time.split(":");
+
+    let hour =
+        parseInt(parts[0]);
+
+    const minute =
+        parts[1];
+
+    const period =
+        hour >= 12 ? "PM" : "AM";
+
+
+    hour =
+        hour % 12 || 12;
+
+
+    return `${hour}:${minute} ${period}`;
+
+}
+
+
+// =====================================================
+// FORMAT DATE
+// =====================================================
+
+function formatDate(date) {
+
+    if (!date) {
+        return "";
+    }
+
+
+    const parts =
+        date.split("-");
+
+
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+}
+
+
+// =====================================================
+// HTML SAFETY
+// =====================================================
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+// =====================================================
+// BACK TO HOME
+// =====================================================
+
+backBtn.addEventListener(
+    "click",
+    function () {
+
+        window.location.href =
+            "home.html";
+
+    }
+);
+// =====================================================
+// NOTIFICATION PERMISSION
+// =====================================================
+
+async function requestNotificationPermission() {
+
+    if (!("Notification" in window)) {
+        alert("This browser does not support notifications.");
+        return;
+    }
+
+    if (Notification.permission === "default") {
+
+        await Notification.requestPermission();
+
+    }
+
+}
+// =====================================================
+// CHECK MEDICINE REMINDERS
+// =====================================================
+
+function checkMedicineReminders() {
+
+    const now = new Date();
+
+    // Local date - India/local PC date
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    const currentDate = `${year}-${month}-${day}`;
+
+    // Local time
+    const currentTime =
+        String(now.getHours()).padStart(2, "0") +
+        ":" +
+        String(now.getMinutes()).padStart(2, "0");
+
+
+    medicines.forEach(function (medicine) {
+
+        if (
+            medicine.time === currentTime &&
+            medicine.startDate <= currentDate &&
+            (
+                !medicine.endDate ||
+                medicine.endDate >= currentDate
+            )
+        ) {
+
+            showMedicineNotification(medicine);
+
+        }
+
+    });
+
+}
+
+
+// =====================================================
+// SHOW MEDICINE NOTIFICATION
+// =====================================================
+
+function showMedicineNotification(medicine) {
+
+    if (Notification.permission !== "granted") {
+        return;
+    }
+
+
+    // Prevent duplicate notification
+    const notificationKey =
+        `medicine-${medicine.id}-${medicine.time}-${new Date().toDateString()}`;
+
+    if (
+        localStorage.getItem(notificationKey)
+    ) {
+        return;
+    }
+
+
+    const notification =
+        new Notification(
+            "💊 Medicine Reminder",
+            {
+                body:
+                    `Time to take ${medicine.name} — ${medicine.dosage}`,
+                tag:
+                    notificationKey
+            }
+        );
+
+
+    // Mark as shown
+    localStorage.setItem(
+        notificationKey,
+        "shown"
+    );
+
+
+    notification.onclick = function () {
+
+        window.focus();
+
+        notification.close();
+
+    };
+
+}
+
+
+// =====================================================
+// REQUEST NOTIFICATION PERMISSION
+// =====================================================
+
+async function requestNotificationPermission() {
+
+    if (!("Notification" in window)) {
+
+        alert(
+            "This browser does not support notifications."
+        );
+
+        return;
+
+    }
+
+
+    if (Notification.permission === "default") {
+
+        const permission =
+            await Notification.requestPermission();
+
+        console.log(
+            "Notification permission:",
+            permission
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// START REMINDER SYSTEM
+// =====================================================
+
+requestNotificationPermission();
+
+
+// Check every 10 seconds
+setInterval(
+    checkMedicineReminders,
+    10000
+);
+
+
+
+// =====================================================
+// INITIAL LOAD
+// =====================================================
+
+renderMedicines();
+// TEMPORARY REMINDER TEST
+
+setTimeout(function () {
+
+    new Notification("💊 Medicine Reminder", {
+        body: "Test reminder: Time to take your medicine."
+    });
+
+}, 10000);

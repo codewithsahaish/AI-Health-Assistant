@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicine Reminder</title>
+
+    <link rel="stylesheet" href="medicine.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="medicine-header">
+
+        <button id="backBtn" class="back-btn">
+            ←
+        </button>
+
+        <div>
+            <h1>💊 Medicine Reminder</h1>
+            <p>Never miss your medicine</p>
+        </div>
+
+    </header>
+
+
+    <main class="medicine-container">
+
+
+        <!-- Add Medicine -->
+
+        <section class="add-medicine-card">
+
+            <div class="section-title">
+
+                <div class="title-icon">
+                    💊
+                </div>
+
+                <div>
+                    <h2>Add Medicine</h2>
+                    <p>Set a reminder for your medicine</p>
+                </div>
+
+            </div>
+
+
+            <form id="medicineForm">
+
+                <!-- Medicine Name -->
+
+                <div class="form-group">
+
+                    <label>
+                        Medicine Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="medicineName"
+                        placeholder="e.g. Paracetamol"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Dosage -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Dosage
+                        </label>
+
+                        <input
+                            type="text"
+                            id="dosage"
+                            placeholder="e.g. 500 mg"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Frequency -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Frequency
+                        </label>
+
+                        <select id="frequency">
+
+                            <option value="Once a day">
+                                Once a day
+                            </option>
+
+                            <option value="Twice a day">
+                                Twice a day
+                            </option>
+
+                            <option value="Three times a day">
+                                Three times a day
+                            </option>
+
+                            <option value="As needed">
+                                As needed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Time -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Reminder Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="medicineTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Start Date -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- End Date -->
+
+                <div class="form-group">
+
+                    <label>
+                        End Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="endDate"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="add-btn"
+                >
+                    + Add Medicine
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Medicine List -->
+
+        <section class="medicine-list-section">
+
+            <div class="list-header">
+
+                <div>
+
+                    <h2>My Medicines</h2>
+
+                    <p>
+                        Your active medicine reminders
+                    </p>
+
+                </div>
+
+                <span
+                    id="medicineCount"
+                    class="medicine-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="medicineList"
+                class="medicine-list"
+            >
+
+                <!-- Medicines will appear here -->
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        💊
+                    </div>
+
+                    <h3>
+                        No medicines added
+                    </h3>
+
+                    <p>
+                        Add your first medicine reminder above.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Reminder Information -->
+
+        <div class="reminder-info">
+
+            🔔 <strong>Reminder:</strong>
+            Keep browser notifications enabled to receive
+            medicine reminders.
+
+        </div>
+
+
+    </main>
+
+
+    <script src="medicine.js"></script>
+
+</body>
+
+</html>

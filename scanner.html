@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scan Medicine - AI Health Assistant</title>
+
+    <link rel="stylesheet" href="scanner.css">
+</head>
+
+<body>
+
+    <header class="scanner-header">
+        <button id="backBtn">←</button>
+
+        <div>
+            <h1>Scan Medicine</h1>
+            <p>Scan the medicine package</p>
+        </div>
+    </header>
+
+
+    <main class="scanner-container">
+
+        <section class="camera-card">
+
+            <div class="camera-box">
+
+                <video id="camera" autoplay playsinline></video>
+
+                <div class="scan-frame">
+                    <span></span>
+                </div>
+
+                <div id="cameraMessage" class="camera-message">
+                    Camera will appear here
+                </div>
+
+            </div>
+
+            <div class="scanner-controls">
+
+    <button id="startCameraBtn" class="primary-btn">
+        📷 Start Camera
+    </button>
+
+    <button id="captureBtn" class="capture-btn" disabled>
+        📷
+    </button>
+
+</div>
+
+            <canvas id="canvas"></canvas>
+
+        </section>
+
+
+        <section class="upload-section">
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <label for="imageInput" class="upload-btn">
+                📁 Upload Medicine Image
+            </label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            >
+
+            <p>
+                Upload a clear photo of the medicine strip or box.
+            </p>
+
+        </section>
+
+
+        <section id="processing" class="processing hidden">
+
+            <div class="loader"></div>
+
+            <h2>Reading Medicine Details...</h2>
+
+            <p>
+                Please wait while the application reads the package.
+            </p>
+
+        </section>
+
+
+        <section id="resultSection" class="result-section hidden">
+
+            <div class="result-header">
+                <span class="success-icon">✓</span>
+
+                <div>
+                    <h2>Medicine Details</h2>
+                    <p>Information detected from the package</p>
+                </div>
+            </div>
+
+
+            <div class="medicine-details">
+
+                <div class="detail-card">
+                    <span>💊</span>
+                    <div>
+                        <small>Medicine Name</small>
+                        <strong id="medicineName">Not detected</strong>
+                    </div>
+                </div>
+
+
+                <div class="detail-card">
+                    <span>🏭</span>
+                    <div>
+                        <small>Manufacturing Date</small>
+                        <strong id="manufacturingDate">Not detected</strong>
+                    </div>
+                </div>
+
+
+                <div class="detail-card">
+                    <span>⏳</span>
+                    <div>
+                        <small>Expiry Date</small>
+                        <strong id="expiryDate">Not detected</strong>
+                    </div>
+                </div>
+
+
+                <div class="detail-card">
+                    <span>🔢</span>
+                    <div>
+                        <small>Batch Number</small>
+                        <strong id="batchNumber">Not detected</strong>
+                    </div>
+                </div>
+
+
+                <div class="detail-card">
+                    <span>🏢</span>
+                    <div>
+                        <small>Manufacturer</small>
+                        <strong id="manufacturer">Not detected</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="expiryStatus" class="expiry-status">
+                Status will appear here
+            </div>
+
+
+            <div class="raw-text-box">
+
+                <h3>Detected Text</h3>
+
+                <p id="detectedText">
+                    No text detected yet.
+                </p>
+
+            </div>
+            <button id="saveRecordBtn" class="primary-btn">
+    💾 Save to Health Records
+</button>
+
+
+            <button id="scanAgainBtn" class="primary-btn">
+                📷 Scan Another Medicine
+            </button>
+
+        </section>
+
+
+        <div class="safety-note">
+            ⚠️ <strong>Important:</strong> Always verify medicine
+            information on the original packaging. This scanner is
+            an educational tool and should not be used as a substitute
+            for a pharmacist or healthcare professional.
+        </div>
+
+    </main>
+
+
+    <!-- OCR Library -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+    <script src="scanner.js"></script>
+
+</body>
+</html>

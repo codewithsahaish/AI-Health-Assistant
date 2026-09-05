@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Profile - AI Health Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="profile.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= PROFILE PAGE ================= -->
+
+    <main class="profile-page">
+
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="profile-header">
+
+            <button
+                type="button"
+                id="backBtn"
+                class="back-btn"
+            >
+                ←
+            </button>
+
+
+            <div>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    Manage your personal information
+                </p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= PROFILE CARD ================= -->
+
+        <section class="profile-card">
+
+
+            <!-- PROFILE PHOTO -->
+
+            <div class="profile-photo-section">
+
+                <div
+                    class="profile-photo"
+                    id="profilePhoto"
+                >
+
+                    <span id="profileInitials">
+                        U
+                    </span>
+
+                    <img
+                        id="profileImage"
+                        class="hidden"
+                        alt="Profile Photo"
+                    >
+
+                </div>
+
+
+                <label
+                    for="profileImageInput"
+                    class="change-photo-btn"
+                >
+                    📷 Change Photo
+                </label>
+
+
+                <input
+                    type="file"
+                    id="profileImageInput"
+                    accept="image/*"
+                    hidden
+                >
+
+            </div>
+
+
+
+            <!-- PROFILE NAME -->
+
+            <h2 id="profileDisplayName">
+                Your Name
+            </h2>
+
+
+            <p id="profileDisplayEmail">
+                your@email.com
+            </p>
+
+
+
+            <!-- EDIT BUTTON -->
+
+            <button
+                type="button"
+                id="editProfileBtn"
+                class="primary-btn"
+            >
+                ✏️ Edit Profile
+            </button>
+
+        </section>
+
+
+
+        <!-- ================= PERSONAL INFORMATION ================= -->
+
+        <section class="profile-section">
+
+            <div class="section-title">
+
+                <span>
+                    📋
+                </span>
+
+                <div>
+
+                    <h2>
+                        Personal Information
+                    </h2>
+
+                    <p>
+                        Your basic profile details
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-info-grid">
+
+
+                <!-- NAME -->
+
+                <div class="info-item">
+
+                    <small>
+                        Full Name
+                    </small>
+
+                    <strong id="infoName">
+                        Not added
+                    </strong>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="info-item">
+
+                    <small>
+                        Email Address
+                    </small>
+
+                    <strong id="infoEmail">
+                        Not added
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= DAILY GOALS ================= -->
+
+        <section class="profile-section">
+
+            <div class="section-title">
+
+                <span>
+                    🎯
+                </span>
+
+                <div>
+
+                    <h2>
+                        Daily Goals
+                    </h2>
+
+                    <p>
+                        Set your personal health targets
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="goal-grid">
+
+
+                <!-- STEPS GOAL -->
+
+                <div class="goal-card">
+
+                    <div class="goal-icon">
+                        🚶
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Steps Goal
+                        </small>
+
+                        <strong>
+
+                            <span id="stepsGoal">
+                                8000
+                            </span>
+
+                            steps
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- WATER GOAL -->
+
+                <div class="goal-card">
+
+                    <div class="goal-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Water Goal
+                        </small>
+
+                        <strong>
+
+                            <span id="waterGoal">
+                                8
+                            </span>
+
+                            glasses
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="editGoalsBtn"
+                class="secondary-btn"
+            >
+                ✏️ Edit Goals
+            </button>
+
+        </section>
+
+
+
+        <!-- ================= EDIT PROFILE FORM ================= -->
+
+        <section
+            id="editProfileSection"
+            class="edit-section hidden"
+        >
+
+            <div class="section-title">
+
+                <span>
+                    ✏️
+                </span>
+
+                <div>
+
+                    <h2>
+                        Edit Profile
+                    </h2>
+
+                    <p>
+                        Update your information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <label for="nameInput">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="nameInput"
+                placeholder="Enter your full name"
+                maxlength="50"
+            >
+
+
+            <label for="emailInput">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="emailInput"
+                placeholder="Enter your email"
+                maxlength="100"
+            >
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    id="cancelProfileBtn"
+                    class="secondary-btn"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    id="saveProfileBtn"
+                    class="primary-btn"
+                >
+                    💾 Save Profile
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= EDIT GOALS FORM ================= -->
+
+        <section
+            id="editGoalsSection"
+            class="edit-section hidden"
+        >
+
+            <div class="section-title">
+
+                <span>
+                    🎯
+                </span>
+
+                <div>
+
+                    <h2>
+                        Edit Daily Goals
+                    </h2>
+
+                    <p>
+                        Set goals that work for you
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEPS -->
+
+            <label for="stepsGoalInput">
+                Daily Steps Goal
+            </label>
+
+            <input
+                type="number"
+                id="stepsGoalInput"
+                min="100"
+                max="100000"
+                step="100"
+                placeholder="8000"
+            >
+
+
+            <!-- WATER -->
+
+            <label for="waterGoalInput">
+                Daily Water Goal
+            </label>
+
+            <input
+                type="number"
+                id="waterGoalInput"
+                min="1"
+                max="30"
+                step="1"
+                placeholder="8"
+            >
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    id="cancelGoalsBtn"
+                    class="secondary-btn"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    id="saveGoalsBtn"
+                    class="primary-btn"
+                >
+                    💾 Save Goals
+                </button>
+
+            </div>
+
+        </section>
+        
+<!-- ================= LOGOUT ================= -->
+
+<button
+    type="button"
+    id="logoutBtn"
+    class="logout-btn"
+>
+    🚪 Logout
+</button>
+
+
+
+        <!-- ================= PROFILE NOTE ================= -->
+
+        <div class="profile-note">
+
+            🔒 Your profile information is stored
+            securely on this device.
+
+        </div>
+
+
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="profile.js"></script>
+
+
+</body>
+
+</html>

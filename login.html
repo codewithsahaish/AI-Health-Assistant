@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - AI Health Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="auth-page">
+
+
+        <!-- ================= BRAND ================= -->
+
+        <section class="auth-brand">
+
+            <div class="brand-icon">
+                🩺
+            </div>
+
+            <h1>
+                AI Health Assistant
+            </h1>
+
+            <p>
+                Your personal health companion
+            </p>
+
+        </section>
+
+
+
+        <!-- ================= AUTH CARD ================= -->
+
+        <section class="auth-card">
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <div
+                id="loginForm"
+                class="auth-form"
+            >
+
+                <div class="auth-header">
+
+                    <h2>
+                        Welcome Back 👋
+                    </h2>
+
+                    <p>
+                        Login to continue to your health dashboard
+                    </p>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <label for="loginEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                >
+
+
+                <!-- PASSWORD -->
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                >
+
+                <div class="login-help-row">
+                    <button
+                        type="button"
+                        id="forgotPasswordBtn"
+                        class="text-btn"
+                    >
+                        Forgot Password?
+                    </button>
+                </div>
+
+
+                <button
+                    type="button"
+                    id="loginBtn"
+                    class="primary-btn"
+                >
+                    🔐 Login
+                </button>
+
+                <div class="login-divider"><span>OR</span></div>
+
+                <button
+                    type="button"
+                    id="guestLoginBtn"
+                    class="guest-btn"
+                >
+                    Continue as Guest
+                </button>
+
+
+                <p class="switch-text">
+
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        id="showSignupBtn"
+                        class="text-btn"
+                    >
+                        Create Account
+                    </button>
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ================= SIGN UP ================= -->
+
+            <div
+                id="signupForm"
+                class="auth-form hidden"
+            >
+
+                <div class="auth-header">
+
+                    <h2>
+                        Create Account 👤
+                    </h2>
+
+                    <p>
+                        Create your personal health account
+                    </p>
+
+                </div>
+
+
+                <!-- NAME -->
+
+                <label for="signupName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                >
+
+
+                <!-- EMAIL -->
+
+                <label for="signupEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                >
+
+
+                <!-- PASSWORD -->
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                >
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <label for="signupConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupConfirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                >
+
+
+                <button
+                    type="button"
+                    id="signupBtn"
+                    class="primary-btn"
+                >
+                    👤 Create Account
+                </button>
+
+
+                <p class="switch-text">
+
+                    Already have an account?
+
+                    <button
+                        type="button"
+                        id="showLoginBtn"
+                        class="text-btn"
+                    >
+                        Login
+                    </button>
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= SAFETY NOTE ================= -->
+
+        <div class="auth-note">
+
+            🔒 Your account helps keep your personal
+            health information connected to your profile.
+
+        </div>
+
+
+    </main>
+
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>
