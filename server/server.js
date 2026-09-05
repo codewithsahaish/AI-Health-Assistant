@@ -4439,46 +4439,42 @@ app.delete(
 // =====================================================
 // 🔔 MEDICINE REMINDER SCHEDULER
 // =====================================================
-
 function getLocalDateTime() {
 
     const now = new Date();
 
-    const year =
-        now.getFullYear();
+    const indiaDateTime = new Intl.DateTimeFormat(
+        "en-CA",
+        {
+            timeZone: "Asia/Kolkata",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        }
+    ).formatToParts(now);
 
-    const month =
-        String(
-            now.getMonth() + 1
-        ).padStart(2, "0");
+    const parts = {};
 
-    const day =
-        String(
-            now.getDate()
-        ).padStart(2, "0");
-
-    const hours =
-        String(
-            now.getHours()
-        ).padStart(2, "0");
-
-    const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2, "0");
+    indiaDateTime.forEach(function (part) {
+        if (part.type !== "literal") {
+            parts[part.type] = part.value;
+        }
+    });
 
     return {
 
         date:
-            `${year}-${month}-${day}`,
+            `${parts.year}-${parts.month}-${parts.day}`,
 
         time:
-            `${hours}:${minutes}`
+            `${parts.hour}:${parts.minute}`
 
     };
 
 }
-
 
 async function sendMedicineReminder(
     medicine
@@ -4867,7 +4863,7 @@ app.get(
 // 🚀 SERVER
 // =====================================================
 
-const PORT =process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
     
 
 
