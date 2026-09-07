@@ -2,7 +2,7 @@
 // 📊 HEALTH INSIGHTS — DATABASE + CURRENT USER DATA
 // =====================================================
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = "";
 const backBtn = document.getElementById("backBtn");
 const stepsInsight = document.getElementById("stepsInsight");
 const stepsInsightText = document.getElementById("stepsInsightText");

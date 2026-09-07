@@ -35,7 +35,7 @@ async function sendMessage() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/health-chat",
+            "/api/health-chat",
             {
                 method: "POST",
 
